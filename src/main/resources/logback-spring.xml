@@ -10,12 +10,31 @@
 
     <appender name="file"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${log.home}/system.log</file>
+        <file>${log.home}/info.log</file>
 
         <rollingPolicy
                 class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover ，每小时生成一份日志文件，保存7天的日志-->
-            <fileNamePattern>${log.home}/system.%d{yyyy-MM-dd-HH}.log
+            <fileNamePattern>${log.home}/info.%d{yyyy-MM-dd-HH}.log
+            </fileNamePattern>
+            <maxHistory>168</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%msg %n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="error"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.home}/error.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover ，每小时生成一份日志文件，保存7天的日志-->
+            <fileNamePattern>${log.home}/error.%d{yyyy-MM-dd-HH}.log
             </fileNamePattern>
             <maxHistory>168</maxHistory>
         </rollingPolicy>
@@ -28,5 +47,6 @@
     <root level="info">
         <appender-ref ref="consoleAppender"/>
         <appender-ref ref="file"/>
+        <appender-ref ref="error"/>
     </root>
 </configuration>

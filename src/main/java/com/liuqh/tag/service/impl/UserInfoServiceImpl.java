@@ -3,6 +3,7 @@ package com.liuqh.tag.service.impl;
 import com.liuqh.tag.dao.UserInfoMapper;
 import com.liuqh.tag.entity.UserInfo;
 import com.liuqh.tag.service.UserInfoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +14,7 @@ import java.util.List;
  * @author LL
  * @date 2020-11-07
  */
+@Slf4j
 @Service
 public class UserInfoServiceImpl implements UserInfoService {
     @Autowired
@@ -33,8 +35,10 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Transactional
     @Override
     public void addList(List<UserInfo> userInfoList) {
+        log.info("addList....");
         for(UserInfo u:userInfoList){
             this.add(u);
         }
+        int i=1/0;
     }
 }
