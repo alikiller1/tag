@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @ControllerAdvice
 @Slf4j
-public class GlobalDefultExceptionHandler {
+public class GlobalDefaultExceptionHandler {
 
 	@ExceptionHandler(Exception.class)
 	@ResponseBody
