@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="false" scan="true" scanPeriod="1 seconds">
     <springProperty scope="context" name="log.home" source="log.home"/>
+    <springProperty scope="context" name="log.level" source="log.level"/>
     <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%msg %n
@@ -8,7 +9,7 @@
         </encoder>
     </appender>
 
-    <appender name="file"
+    <appender name="info"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${log.home}/info.log</file>
 
@@ -44,9 +45,9 @@
         </encoder>
     </appender>
 
-    <root level="info">
+    <root level="${log.level}">
         <appender-ref ref="consoleAppender"/>
         <appender-ref ref="file"/>
-        <appender-ref ref="error"/>
+        <appender-ref ref="info"/>
     </root>
 </configuration>
